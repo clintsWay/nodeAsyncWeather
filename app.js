@@ -24,9 +24,10 @@
 //         }
 //     });
 
+const {dsk} = require('./hideKey');
 const request = require('request');
 request({
-    url: 'https://api.darksky.net/forecast/bcaf1b694a6b7f49f2ca3ba3fd4dbb0a/42.9586307-87.94475779999999',
+    url: `https://api.darksky.net/forecast/${dsk}/42.9586307,-87.94475779999999`,
     json: true
     }, (error, response, body) => {
         if (!error && response.statusCode === 200) {
