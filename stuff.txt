@@ -1,0 +1,5 @@
+console.log(JSON.stringify(body, undefined, 2));
+
+encodeURIComponent('I like rice')
+
+ decodeURIComponent('I%20like%20rice')
