@@ -1,29 +1,41 @@
-const request = require('request');
-const yargs = require('yargs');
-const {key} = require('./hideKey.js');
+
+// const yargs = require('yargs');
+
+// const geocode = require('./geocode/geocode');
  
-const argv = yargs
-    .options({
-        a: {
-            demand: true,
-            alias: 'address',
-            describe: 'Address to fetch weather for',
-            string: true
-        }
-    })
-    .help()
-    .alias('help', 'h')
-    .argv;
+// const argv = yargs
+//     .options({
+//         a: {
+//             demand: true,
+//             alias: 'address',
+//             describe: 'Address to fetch weather for',
+//             string: true
+//         }
+//     })
+//     .help()
+//     .alias('help', 'h')
+//     .argv;
 
-var encodedAddress = encodeURIComponent(argv.a);
+//     geocode.geocodeAddress(argv.address, (errorMessage, results) => {
+//         if (errorMessage) {
+//             console.log(errorMessage);
+//         } else {
+//             console.log(JSON.stringify(results, undefined, 2));
+//         }
+//     });
 
-console.log(encodedAddress);
-
+const request = require('request');
 request({
-    url: `https://maps.googleapis.com/maps/api/geocode/json?address=${encodedAddress}&key=${key} `,
+    url: 'https://api.darksky.net/forecast/bcaf1b694a6b7f49f2ca3ba3fd4dbb0a/42.9586307-87.94475779999999',
     json: true
-}, (error, response, body) => {
-     console.log(`Address: ${body.results[0].formatted_address}`);
-     console.log(`latitude: ${body.results[0].geometry.location.lat}`);
-     console.log(`longitude: ${body.results[0].geometry.location.lng}`);
+    }, (error, response, body) => {
+        if (!error && response.statusCode === 200) {
+            console.log(body.currently.temperature);
+        } else {
+            console.log('Unable to fetch weather');
+        }
 });
+
+
+
+
