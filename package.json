@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/clintsWay/nodeWeatherAppAsyncBasics#readme",
   "dependencies": {
+    "axios": "^0.13.1",
     "request": "^2.87.0",
     "yargs": "^4.7.1"
   }
